@@ -1,0 +1,14 @@
+rules:
+  - id: unsafe-functions
+    patterns:
+      - pattern-either:
+          - pattern: assert(...)
+          - pattern: preg_replace(...)
+          - pattern: call_user_func(...)
+          - pattern: call_user_func_array(...)
+          - pattern: create_function(...)
+    message: >-
+      Evaluating non-constant commands. This can lead to command injection.
+    severity: WARNING
+    languages:
+      - php
