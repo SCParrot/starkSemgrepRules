@@ -1,0 +1,26 @@
+rules:
+  - id: unsafe-functions-ssrf
+    patterns:
+      - pattern-either:
+          - pattern: file_get_contents(...)
+          - pattern: curl_setopt(...)
+          - pattern: curl_exec(...)
+          - pattern: fsockopen(...)
+          - pattern: readfile(...)
+          - pattern: fopen(...)
+          - pattern: fread(...)
+          - pattern: fgets(...)
+          - pattern: fgetss(...)
+          - pattern: fgetc(...)
+          - pattern: fgetcsv(...)
+          - pattern: fpassthru(...)
+          - pattern: scanf(...)
+          - pattern: file(...)
+          - pattern: highlight_file(...)
+          - pattern: show_source(...)
+          - pattern: parse_ini_file(...)
+          - pattern: simplexml_load_file(...)
+    message: Evaluating non-constant commands. This can lead to command injection.
+    severity: WARNING
+    languages:
+      - php
